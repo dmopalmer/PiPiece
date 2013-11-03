@@ -5,14 +5,17 @@
 // This is a combination of my caliper measurements and 
 // <http://www.raspberrypi-spy.co.uk/2013/05/pi-camera-module-mechanical-dimensions/>
 
+hole_expansion = 0.5;   // Extra radius on holes
 // CM -- Camera Module
 // Origin is lower left corner looking into lens with cable out the bottom
-CM_size = [25.1, 24.22];   // My caliper measurement
+// We later rotate([0,0,90]) to put the cable out to +x in the Pi board coordinates (USB-side direction)
+CM_size = [25.1, 24.22,0];   // My caliper measurement
 CM_hole_dia = 2.0;  // Diameter of mounting hole
 CM_hole_space = [21.0, 12.5];
 CM_hole_zero = [(CM_size[0] - CM_hole_space[0])/2, 9.5];
 CM_optical_center = [CM_size[0]/2, 8.5];    // Lens is not well-registered
 CM_board_thick_z = 1.0; // Measured as 0.87 exclusive of components
+CM_board_and_connector_thick_z = 3.52; // From top of board to back of connector by calipers
 CM_LED_location = [20,19];  // Where the LED is
 CM_LED_hollow_size = [4,4,3];   // size of hollow to surround LED
 CM_LED_dome_size = [5,5,4];     // Size of outside of dome around LED
@@ -29,13 +32,18 @@ PI_board_size = [85,56];
 PI_mounthole_locs = [[25.5,18],[80,43.5]];
 PI_mounthole_dia = 2.9;
 
-drawtube_OD = 0.965 * 25.4; // Other popular sizes for telescopes are 1.25", 2.0"
+PI_optical_center = [55, 25];   // Where you want to place the central axis of the optical system
+                                // Note that there is interference between the [25.5, 18] mounting hole
+                                // and the camera board if you try to center it on the board center
+
+drawtube_OD = 25.4 * 0.965; // Popular sizes for telescopes are 0.965", 1.25", 2.0"
 drawtube_length = 20.0;     // Length of drawtube beyond flange (part that extends into nosepiece)
 drawtube_wall = 1.5;
 flange_parfocal = 4.5;      // How far behind the end of the eyepiece tube to put the board plane
 flange_stepsize = 4.0;      // How much the tube steps out to the side to seat on flange
 
-mounthole_out_radius = 5;   // How far from the center of mount holes to the 
+mounthole_out_radius = 5;   // How far from the center of mount holes to the edge of the plate
+mounthole_washer_radius = 3.0;  // How much clearance to leave around the top of the mounting hole for washer and screw head
 
 CM_hole_extra_length = 4;   // How long to extend the CM mounting holes into the drawtube assembly
 
@@ -50,4 +58,14 @@ optics_f_ratio = 5.0;       // How much clearance to leave the baffles so they d
 baffle_thickness = 0.5; // Vertical thickness
 baffle_spacing = 5;     // Vertical spacing (not perpendicular)
 baffle_cone_height = drawtube_OD * tan(60)/2;   //slope of cone is 60 degrees 
-echo("baffle_cone_height",baffle_cone_height,  drawtube_OD , sin(60)/2);
+
+// Plate in which the module is embedded
+// the bottom of the plate is at z=-backplate_thickness and the top at z=0
+// The coordinate system is the same as for the drawtube
+backplate_thickness = 5;
+
+backplate_cavity = [[28,30,4.1],[-17.5, -15, -4]];
+// Where you feed out the cable
+backplate_slot = backplate_cavity + [[-24,0,0],[24,0,-3]];
+
+first_rail = [[19,3,backplate_thickness-CM_board_thick_z],[-18,-12,-backplate_thickness]];
