@@ -92,6 +92,7 @@ module plate_slab(thickness)
 {
     hull() 
     {
+        // Fit the mounting holes and a margin aroudn them
         translate(PI_optical_center * -1) 
         {
             for (i = [0:1])
@@ -100,9 +101,11 @@ module plate_slab(thickness)
                     cylinder(h=thickness,r=mounthole_out_radius);
             }
         }
+        // And also fit camera module cavity expanded by 1 mm
+        translate([backplate_cavity[1][0] - 1, backplate_cavity[1][1] - 1, 0])
+            cube([backplate_cavity[0][0] + 2,backplate_cavity[0][1] + 2,thickness]);  // Stretch 1 mm beyond CM board cavity on all 4 edges
+        // Fit the flange for the drawtube
         cylinder(h=thickness,r=drawtube_OD/2 + flange_stepsize);
-        translate(backplate_cavity[1] + -1 * [1,1]) // Move center to center of board
-            cube([backplate_cavity[0][1] + 2,backplate_cavity[0][1] + 2,thickness]);  // Stretch 1 mm beyond CM board cavity on all 4 edges
     }
 }
 

@@ -1,3 +1,7 @@
+
+// Diameter of drawtube (inide diameter of eyepiece holder tube) in inches
+Drawtube_OD_inches = 1.25;  [0.965,1.25,2.0]
+
 // The camera board by my measurement is 25.10 mm wide, 24.22 mm tope-bottom
 
 // Camera module board dimensions
@@ -36,7 +40,7 @@ PI_optical_center = [55, 25];   // Where you want to place the central axis of t
                                 // Note that there is interference between the [25.5, 18] mounting hole
                                 // and the camera board if you try to center it on the board center
 
-drawtube_OD = 25.4 * 0.965; // Popular sizes for telescopes are 0.965", 1.25", 2.0"
+drawtube_OD = 25.4 * Drawtube_OD_inches; // Popular sizes for telescopes are 0.965", 1.25", 2.0"
 drawtube_length = 20.0;     // Length of drawtube beyond flange (part that extends into nosepiece)
 drawtube_wall = 1.5;
 flange_parfocal = 4.5;      // How far behind the end of the eyepiece tube to put the board plane
@@ -64,8 +68,8 @@ baffle_cone_height = drawtube_OD * tan(60)/2;   //slope of cone is 60 degrees
 // The coordinate system is the same as for the drawtube
 backplate_thickness = 5;
 
-backplate_cavity = [[28,30,4.1],[-17.5, -15, -4]];
+backplate_cavity = [[36,30,4.1],[-17.5, -15, -4]];
 // Where you feed out the cable
-backplate_slot = backplate_cavity + [[-24,0,0],[24,0,-3]];
+backplate_slot = [[4,20,2*backplate_thickness],[14.5,-10,-1.5*backplate_thickness]];
 
 first_rail = [[19,3,backplate_thickness-CM_board_thick_z],[-18,-12,-backplate_thickness]];
