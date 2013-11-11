@@ -14,7 +14,7 @@ Parts
 
 This is an electronic eyepiece for a telescope or other optical system, built from a Raspberry Pi and its camera module.    (You can currently get a Model A Raspberry Pi and camera module for $40 as a bundle, e.g. <http://www.alliedelec.com/Search/ProductDetail.aspx?SKU=70315057>)  You will also need an SD card with the operating system, power supply, and case for the Raspberry Pi.  For convenience and cordlessness, you can add a USB WiFi dongle and a USB battery.
 
-Print a drawtube and a backplate for the appropriate eyepiece tube size for your telescope.  (Common sizes are 0.965", 1.25", and 2.0".)  Use black filament to reduce internal reflections.
+Print a drawtube and a backplate for the appropriate eyepiece tube size for your telescope.  (Common sizes are 0.965", 1.25", and 2.0".)  Use black filament to reduce internal reflections.  The Makerbot Customizer on Thingiverse did not work correctly, so I have manually generated all part x size permutations.  If you want a different size, look at the {backplate,drawtube}_size.scad files to see how to do it with OpenSCAD.
 
 A couple of small-diameter nuts and bolts hold the two printed parts together and onto the case to make a single solid unit.  (I used #3-48 x 3/4 inch bolts.)  
 
@@ -22,7 +22,9 @@ A couple of small-diameter nuts and bolts hold the two printed parts together an
 Assembly Instructions
 =====================
 
-You will probably have to drill out the various holes. On the drawtube component, 4 holes for the mounting pins from the backplate, and the relief hole for the LED on the camera module.  Then clamp the pieces together onto the lid of your Raspberry Pi case, and drill out the mounting screw holes for the appropriate sized bolts you are using.  Cut a slot in the Raspberry Pi case to accomodate the cable.
+http://www.thingiverse.com/thing:181310 has some pictures that might be helpful.
+
+You will probably have to drill out the various holes. On the drawtube component, there are 4 holes for the mounting pins from the backplate, and the relief cavity for the LED on the camera module.  Then clamp the pieces together onto the lid of your Raspberry Pi case, and drill out the mounting screw holes for the appropriate sized bolts you are using.  Cut a slot in the Raspberry Pi case to accomodate the cable.
 
 The spacing between the holes is the same as for the Raspberry Pi version 2 mounting holes, so if you don't want to use a case you can mount the assembly directly to the board using stand-offs.
 
@@ -40,5 +42,6 @@ The field of view is very small due to the size of the imager.  The sensor size 
 Software
 ========
 
-You want to turn off the camera LED to prevent light leakage.  Add the following in /boot/config.txt
+You want to turn off the camera LED to prevent light leakage.  Add the following in /boot/config.txt on the Raspberry Pi's SD card:
 disable_camera_led=1
+
