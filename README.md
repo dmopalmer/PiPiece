@@ -3,13 +3,26 @@ PiPiece
 
 Electronic eyepiece for telescopes etc. using the Raspberry Pi camera module.
 
+Homepage  
+========  
+The latest version of this project will be at its homepage  
+https://github.com/dmopalmer/PiPiece  
+
+
+Parts
+=====
+
+This is an electronic eyepiece for a telescope or other optical system, built from a Raspberry Pi and its camera module.    (You can currently get a Model A Raspberry Pi and camera module for $40 as a bundle, e.g. <http://www.alliedelec.com/Search/ProductDetail.aspx?SKU=70315057>)  You will also need an SD card with the operating system, power supply, and case for the Raspberry Pi.  For convenience and cordlessness, you can add a USB WiFi dongle and a USB battery.
+
+Print a drawtube and a backplate for the appropriate eyepiece tube size for your telescope.  (Common sizes are 0.965", 1.25", and 2.0".)  Use black filament to reduce internal reflections.
+
+A couple of small-diameter nuts and bolts hold the two printed parts together and onto the case to make a single solid unit.  (I used #3-48 x 3/4 inch bolts.)  
+
 
 Assembly Instructions
 =====================
 
-Print a drawtube and a backplate for the appropriate eyepiece tube size for your telescope.  (Common sizes are 0.965", 1.25", and 2.0".)  Use black filament ot reduct internal reflections.
-
-You will probably have to drill out the various holes. On the drawtube component, 4 holes for the mounting pins from the backplate, and the relief hole for the LED on the camera module.  Then clamp the pieces together onto the lid of your Raspberry Pi case, and drill out the mounting screw holes for the appropriate sized bolts you are using.  (I used #3-48 x 3/4 inch bolts.)  Cut a slot in the Raspberry Pi case to accomodate the cable.
+You will probably have to drill out the various holes. On the drawtube component, 4 holes for the mounting pins from the backplate, and the relief hole for the LED on the camera module.  Then clamp the pieces together onto the lid of your Raspberry Pi case, and drill out the mounting screw holes for the appropriate sized bolts you are using.  Cut a slot in the Raspberry Pi case to accomodate the cable.
 
 The spacing between the holes is the same as for the Raspberry Pi version 2 mounting holes, so if you don't want to use a case you can mount the assembly directly to the board using stand-offs.
 
@@ -17,7 +30,7 @@ Carefully remove the lens from the camera module, breaking or scraping away the 
 
 Put everything together, slide it into an eyepiece tube, and try it out.
 
-Focussing and Pointing
+Focusing and Pointing
 ======================
 
 The focus is very sensitive and the focal point is probably going to be quite far from what it is with your favorite eyepiece.  Use an eyepiece to focus your telescope on something nearby, then further away, and note which direction you turn the focus knob.  With this imager you will probably have to turn quite a ways in the same direction (well 'beyond infinity') to get it in focus.  A daytime scene is probably the best way to start.  When the system is out of focus, you will probably see nothing but a uniform flat field, apart from the shadows of all the dust that got on the imager.
