@@ -45,3 +45,23 @@ Software
 You want to turn off the camera LED to prevent light leakage.  Add the following in /boot/config.txt on the Raspberry Pi's SD card:
 disable_camera_led=1
 
+If you want to serve the output of raspistill on the web, you can use PiCamServer
+https://github.com/dmopalmer/picamserver.git
+which is slow in frame rate, but gives you control and lets you play with parameters from your browser (even on iThings, androthings, etc.).
+
+Or if you have mplayer installed on a desktop you can use that for higher rate video:
+The following is to serve 3 fps video, with maximum ISO rating, to a desktop at 192.168.0.43:
+
+On the Pi (with raspivid parameters set for 3 Hz frame rate) :
+mkfifo /tmp/buffer
+raspivid -t 999999 -o  /tmp/buffer -fps 3 -ss 300000 --ISO 800 --exposure night &
+nc  192.168.0.43 5001 < /tmp/buffer
+
+On the desktop:
+nc -l  5001 | mplayer -fps 3.1 -cache 1024 -
+
+If you also want to record to a file on your local desktop:
+nc -l  5001 | tee /tmp/recording.h264 | mplayer -fps 3.1 -cache 1024 -
+
+
+
