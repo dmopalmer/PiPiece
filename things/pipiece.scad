@@ -15,7 +15,7 @@
 Drawtube_OD_inches = 1.25; // [0.965,1.25,2.0]
 
 // Part
-part = "both"; // [backplate:Back Plate, drawtube:Drawtube, both:Both parts]
+part = "drawtube"; // [backplate:Back Plate, drawtube:Drawtube, both:Both parts]
 
 // Customizer only looks for variables up to the first module.
 module stop_customizer(){}
@@ -38,7 +38,7 @@ module print_part()
     }
 }
 
-// The camera board by my measurement is 25.10 mm wide, 24.22 mm tope-bottom
+// The camera board by my measurement is 25.10 mm wide, 24.22 mm top-bottom
 
 // Camera module board dimensions
 // These are for the version 1.3 board.
@@ -158,6 +158,9 @@ module CM_keepout()
             translate([-CM_camera_square[0]/2,-CM_camera_square[1]/2,0])
                 cube(CM_camera_square);
             translate(CM_top_connector[1]) cube(CM_top_connector[0]);
+            
+            // Enlarged space for version 2 of the camera module
+           translate([-10,5,-1]) cube([6,6,5])
 
             // camera and connector on top
             translate(CM_optical_center * -1)
@@ -235,7 +238,8 @@ module PI_mount_screw_keepout()
             {
                 union()
                 {
-                    cylinder(h=2*(plate_thickness + backplate_thickness),r=PI_mounthole_dia/2 + hole_expansion,center=true);
+                    cylinder(h=2*(plate_thickness + backplate_thickness),
+                            r=PI_mounthole_dia/2 + hole_expansion,center=true);
                     translate([0,0,plate_thickness - 0.1])
                         cylinder(h=2*plate_thickness+flange_parfocal,r=mounthole_washer_radius);
                 }
@@ -280,11 +284,17 @@ module backplate()
         translate(backplate_slot[1]) cube(backplate_slot[0]);
     }
     CM_mountpins();
-    for (i = [0:1])
+    difference ()
     {
-        translate([0,i*CM_hole_space[0],0])
-            translate(first_rail[1])
-                cube(first_rail[0]);
+        for (i = [0:1])
+        {
+            translate([0,i*CM_hole_space[0],0])
+                translate(first_rail[1])
+                    cube(first_rail[0]);
+        }
+        // Space for components on module version 2
+        translate([-10,-13,first_rail[1][2]])
+            cube([6,27,8]);
     }
 }
 
